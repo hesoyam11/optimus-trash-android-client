@@ -7,6 +7,7 @@ import java.net.URL
 
 const val domain = "http://192.168.0.102:8000"
 var accessToken = ""
+var userId = -1
 
 fun postLogin(username: String, password: String) = Observable.create<String> { it ->
 

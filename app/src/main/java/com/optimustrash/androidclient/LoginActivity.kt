@@ -3,6 +3,7 @@ package com.optimustrash.androidclient
 import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -29,7 +30,12 @@ class LoginActivity : AppCompatActivity() {
             val loginErrorView = findViewById<TextView>(R.id.login_err_msg)
             o.subscribe({
                 accessToken = it.access
-                loginErrorView.text = "Success!"
+                val jwtPayload = String(Base64.decode(
+                    accessToken.split('.')[1],
+                    Base64.URL_SAFE
+                ), Charsets.UTF_8)
+                userId = Gson().fromJson(jwtPayload, UserId::class.java).user_id
+                loginErrorView.text = "Success! UserId: $userId"
             }, {
                 loginErrorView.text = it.message
             })
@@ -39,4 +45,8 @@ class LoginActivity : AppCompatActivity() {
 
 class AccessToken(
     val access: String
+)
+
+class UserId(
+    val user_id: Int
 )
