@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".LoginActivity">
-
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
     <LinearLayout
             android:padding="10dip"
             android:orientation="vertical"
@@ -13,6 +9,7 @@
             android:layout_height="wrap_content">
 
         <TextView
+                android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="top"
@@ -20,35 +17,41 @@
                 android:textStyle="bold"
                 android:text="@string/username"/>
 
-        <EditText
-                android:inputType="text"
-                android:id="@+id/username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="top"/>
-
         <TextView
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="top"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:text="@string/password"/>
+                android:text="@string/email"/>
 
-        <EditText
-                android:inputType="textWebPassword"
-                android:id="@+id/password"
+        <TextView
+                android:id="@+id/first_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="top"/>
+                android:gravity="top"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="@string/firstName"/>
 
-        <Button
-                android:id="@+id/login_button"
+        <TextView
+                android:id="@+id/last_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="bottom"
-                android:text="@string/login"
-                android:textAlignment="center"/>
+                android:gravity="top"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="@string/lastName"/>
+
+        <TextView
+                android:id="@+id/is_confirmed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="@string/isConfirmed"/>
 
         <TextView
                 android:id="@+id/error_msg"
@@ -57,6 +60,12 @@
                 android:textSize="20sp"
                 android:layout_height="wrap_content"/>
 
+        <Button
+                android:id="@+id/login_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:text="@string/bins"
+                android:textAlignment="center"/>
     </LinearLayout>
-
-</android.support.constraint.ConstraintLayout>
+</FrameLayout>

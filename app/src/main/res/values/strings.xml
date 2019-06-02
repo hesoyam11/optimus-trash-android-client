@@ -3,4 +3,9 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="bins">Bins</string>
+    <string name="email">Email</string>
+    <string name="firstName">First Name</string>
+    <string name="lastName">Last Name</string>
+    <string name="isConfirmed">Is Confirmed</string>
 </resources>
