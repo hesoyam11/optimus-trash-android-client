@@ -5,7 +5,7 @@ import java.io.DataOutputStream
 import java.net.HttpURLConnection
 import java.net.URL
 
-const val domain = "http://192.168.0.102:8000"
+const val domain = "http://192.168.0.103:8000"
 
 fun postLogin(username: String, password: String) = Observable.create<String> { it ->
 
@@ -49,6 +49,22 @@ fun postLogin(username: String, password: String) = Observable.create<String> { 
 
 fun getUserDetail() = Observable.create<String> {
     val urlConnection = URL("$domain/api/users/$userId").openConnection() as HttpURLConnection
+    try {
+        urlConnection.connect()
+        if (urlConnection.responseCode != HttpURLConnection.HTTP_OK)
+            it.onError(RuntimeException(urlConnection.responseMessage))
+        else {
+            val str = urlConnection.inputStream.bufferedReader().readText()
+            it.onNext(str)
+        }
+    }
+    finally {
+        urlConnection.disconnect()
+    }
+}
+
+fun getUserBinList() = Observable.create<String> {
+    val urlConnection = URL(userBinListRequestUrl ?: "$domain/api/bins/?owner=$userId&ordering=-date_created").openConnection() as HttpURLConnection
     try {
         urlConnection.connect()
         if (urlConnection.responseCode != HttpURLConnection.HTTP_OK)

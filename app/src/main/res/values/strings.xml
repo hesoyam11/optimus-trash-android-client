@@ -8,4 +8,7 @@
     <string name="firstName">First Name</string>
     <string name="lastName">Last Name</string>
     <string name="isConfirmed">Is Confirmed</string>
+    <string name="id">ID</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
 </resources>

@@ -1,14 +1,16 @@
 package com.optimustrash.androidclient
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.Button
 import android.widget.TextView
 import com.google.gson.Gson
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-var userDetail = UserDetail("", "", "", "", false, false)
+var userDetail = UserDetail("", "", "", "", false)
 
 class UserProfileActivity : AppCompatActivity() {
     private lateinit var errorTextView: TextView
@@ -17,6 +19,7 @@ class UserProfileActivity : AppCompatActivity() {
     private lateinit var firstNameTextView: TextView
     private lateinit var lastNameTextView: TextView
     private lateinit var isConfirmedTextView: TextView
+    private lateinit var binListButton: Button
 
     @SuppressLint("CheckResult", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +47,12 @@ class UserProfileActivity : AppCompatActivity() {
         }, {
             errorTextView.text = it.message
         })
+
+        binListButton = findViewById(R.id.bin_list_button)
+        binListButton.setOnClickListener {
+            val i = Intent(this, UserBinListActivity::class.java)
+            startActivity(i)
+        }
     }
 }
 
@@ -52,6 +61,5 @@ class UserDetail(
     val email: String,
     val firstName: String,
     val lastName: String,
-    val isConfirmed: Boolean,
-    val isSuperuser: Boolean
+    val isConfirmed: Boolean
 )
