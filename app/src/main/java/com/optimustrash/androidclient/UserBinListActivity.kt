@@ -1,8 +1,10 @@
 package com.optimustrash.androidclient
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -40,7 +42,7 @@ class UserBinListActivity : AppCompatActivity() {
                 .map{ Gson().fromJson(it, BinList::class.java)}
                 .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
 
-            o.subscribe({
+            o.subscribe({ it ->
                 binListLinearLayout.removeAllViews()
                 for (binItem in it.results) {
                     val binItemView = layoutInflater.inflate(R.layout.user_bin_item, binListLinearLayout, false)
@@ -53,9 +55,18 @@ class UserBinListActivity : AppCompatActivity() {
                     val longitudeTextView = binItemView.findViewById<TextView>(
                         R.id.longitude
                     )
+                    val binDetailButton = binItemView.findViewById<Button>(
+                        R.id.bin_detail_button
+                    )
                     idTextView.text = "${idTextView.text}: ${binItem.id}"
                     latitudeTextView.text = "${latitudeTextView.text}: ${binItem.latitude}"
                     longitudeTextView.text = "${longitudeTextView.text}: ${binItem.longitude}"
+                    binDetailButton.setOnClickListener {
+                        Log.e("buttonMsg", "I am ${binItem.id} button!")
+                        val i = Intent(this, BinDetailActivity::class.java)
+                        i.putExtra("binId", binItem.id.toString())
+                        startActivity(i)
+                    }
                     binListLinearLayout.addView(binItemView)
                 }
                 currentPageTextView.text = "Current Page: ${currentPageNumber}"

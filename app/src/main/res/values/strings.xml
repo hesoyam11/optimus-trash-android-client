@@ -11,4 +11,11 @@
     <string name="id">ID</string>
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>
+    <string name="current_weight">Current Weight</string>
+    <string name="maximum_weight">Maximum Weight</string>
+    <string name="fullness">Fullness</string>
+    <string name="weight_metering">Weight Metering</string>
+    <string name="show_token">Show Token</string>
+    <string name="token_placeholder"><![CDATA[<token placeholder>]]></string>
+    <string name="bin_page">Bin Page</string>
 </resources>
