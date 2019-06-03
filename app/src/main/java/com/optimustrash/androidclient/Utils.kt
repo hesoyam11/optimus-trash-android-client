@@ -113,3 +113,46 @@ fun getBinToken() = Observable.create<String> {
         urlConnection.disconnect()
     }
 }
+
+fun postBin(longitude: String, latitude: String, maxWeight: String) = Observable.create<String> { it ->
+    val requestBody = "{\"longitude\":\"$longitude\", \"latitude\":\"$latitude\", \"maxWeight\":\"$maxWeight\"}"
+    val postData = requestBody.toByteArray(Charsets.UTF_8)
+
+    val urlConnection = URL("$domain/api/bins/").openConnection() as HttpURLConnection
+    urlConnection.doOutput = true
+    urlConnection.instanceFollowRedirects = false
+    urlConnection.requestMethod = "POST"
+    urlConnection.setRequestProperty(
+        "Content-Type", "application/json"
+    )
+    urlConnection.setRequestProperty(
+        "charset", "utf-8"
+    )
+    urlConnection.setRequestProperty(
+        "Content-Length", Integer.toString(postData.size)
+    )
+    urlConnection.useCaches = false
+
+    urlConnection.setRequestProperty(
+        "Authorization", "Bearer $accessToken"
+    )
+
+    val wr = DataOutputStream(urlConnection.outputStream)
+    wr.use {
+        it.write(postData)
+    }
+
+    try {
+        urlConnection.connect()
+
+        if (urlConnection.responseCode != HttpURLConnection.HTTP_CREATED)
+            it.onError(RuntimeException(urlConnection.responseMessage))
+        else {
+            val str = urlConnection.inputStream.bufferedReader().readText()
+            it.onNext(str)
+        }
+    }
+    finally {
+        urlConnection.disconnect()
+    }
+}

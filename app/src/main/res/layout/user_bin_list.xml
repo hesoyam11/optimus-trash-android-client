@@ -10,6 +10,12 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
         >
+            <Button
+                    android:id="@+id/add_bin_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_new_bin"
+            />
             <TextView
                     android:id="@+id/current_page"
                     android:layout_width="match_parent"

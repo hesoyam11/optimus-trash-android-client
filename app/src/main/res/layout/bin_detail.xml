@@ -77,13 +77,5 @@
                 android:textStyle="bold"
                 android:fontFamily="monospace"
                 android:text="@string/token_placeholder"/>
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="top"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"
-                android:text="@string/weight_metering"/>
     </LinearLayout>
 </FrameLayout>

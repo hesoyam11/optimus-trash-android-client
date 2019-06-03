@@ -20,5 +20,6 @@
         <activity android:name=".UserProfileActivity"/>
         <activity android:name=".UserBinListActivity"/>
         <activity android:name=".BinDetailActivity"/>
+        <activity android:name=".BinFormActivity"/>
     </application>
 </manifest>

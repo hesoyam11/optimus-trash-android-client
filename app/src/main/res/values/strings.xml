@@ -18,4 +18,7 @@
     <string name="show_token">Show Token</string>
     <string name="token_placeholder"><![CDATA[<token placeholder>]]></string>
     <string name="bin_page">Bin Page</string>
+    <string name="add_new_bin">Add New Bin</string>
+    <string name="get_current_coordinates_from_device">Get current coordinates from device</string>
+    <string name="add_the_bin">Add the bin</string>
 </resources>

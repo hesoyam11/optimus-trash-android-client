@@ -16,6 +16,7 @@ var userBinListRequestUrl : String? = null
 
 class UserBinListActivity : AppCompatActivity() {
     private lateinit var errorTextView: TextView
+    private lateinit var addBinButton: Button
     private lateinit var currentPageTextView: TextView
     private lateinit var totalItemsTextView: TextView
     private lateinit var nextPageButton: Button
@@ -31,11 +32,17 @@ class UserBinListActivity : AppCompatActivity() {
         setContentView(R.layout.user_bin_list)
 
         errorTextView = findViewById(R.id.error_msg)
+        addBinButton = findViewById(R.id.add_bin_button)
         currentPageTextView = findViewById(R.id.current_page)
         totalItemsTextView = findViewById(R.id.total_items)
         nextPageButton = findViewById(R.id.next_page)
         previousPageButton = findViewById(R.id.previous_page)
         binListLinearLayout = findViewById(R.id.bin_list)
+
+        addBinButton.setOnClickListener {
+            val i = Intent(this, BinFormActivity::class.java)
+            startActivity(i)
+        }
 
         fun fetchUserBinList() {
             val o = getUserBinList()
